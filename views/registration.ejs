@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1d2b64 0%, #1a1013 100%);
+            color: #ffffff;
+        }
+
+        .registration-box {
+            max-width: 400px;
+            width: 100%;
+            padding: 35px;
+            border-radius: 15px;
+            background-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .registration-box h1 {
+            text-align: center;
+            font-size: 28px;
+            margin-bottom: 25px;
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        .form-control {
+            width: 100%;
+            margin-bottom: 18px;
+            padding: 12px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            background-color: rgba(255, 255, 255, 0.15);
+            color: #ffffff;
+            font-size: 15px;
+            transition: border 0.3s ease, background-color 0.3s ease;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: #ffffff;
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-secondary {
+            width: 100%;
+            padding: 12px;
+            font-size: 17px;
+            font-weight: bold;
+            color: #ffffff;
+            background: #e91e63; /* Default button color */
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+
+        .btn-secondary:hover {
+            background: #c2185b; /* Hover color */
+            transform: translateY(-3px);
+        }
+
+        .btn-secondary:active {
+            transform: translateY(1px);
+        }
+
+        .registration-box p {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+
+        .registration-box p a {
+            color: #ff4081;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .registration-box p a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="registration-box">
+        <h1>Create Account</h1>
+        <form method="POST" action="/register">
+            <input type="text" id="user" name="username" class="form-control" placeholder="Username" required>
+            <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
+            <button type="submit" id="simple_click" class="btn-secondary">Register</button>
+        </form>
+        <p>Already have an account? <a href="login">Login here</a></p>
+    </div>
+</body>
+</html>

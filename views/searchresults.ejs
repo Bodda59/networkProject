@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body Styling */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-image: url('background3.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            overflow-x: hidden;
+            padding: 20px;
+            position: relative;
+        }
+
+        /* Background Overlay */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: -1;
+        }
+
+        /* Navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        .navbar-brand {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #50C878;
+            text-decoration: none;
+        }
+
+        .search-bar {
+            display: flex;
+            align-items: center;
+        }
+
+        .search-bar input {
+            padding: 10px;
+            border: none;
+            border-radius: 20px;
+            outline: none;
+            width: 200px;
+            transition: width 0.3s ease-in-out;
+        }
+
+        .search-bar input:focus {
+            width: 300px;
+        }
+
+        .search-bar button {
+            background: #50C878;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin-left: 10px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .search-bar button:hover {
+            transform: scale(1.1);
+        }
+
+        /* Heading */
+        h1 {
+            text-align: center;
+            font-size: 3rem;
+            text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.7);
+            margin: 20px 0;
+        }
+
+        /* Results Section */
+        .result-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+            padding: 0 10px;
+        }
+
+        /* Card Styling */
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.7);
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #50C878;
+        }
+
+        .btn {
+            background: #50C878;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background: #3ba75f;
+        }
+
+        /* No Results Styling */
+        .no-results {
+            text-align: center;
+            font-size: 1.8rem;
+            margin-top: 50px;
+            color: #f5f5f5;
+            text-shadow: 0px 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .search-bar input {
+                width: 150px;
+            }
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Search Results</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navbar -->
+    <div class="navbar">
+        <a href="#" class="navbar-brand">Search Results</a>
+        <div class="search-bar">
+            <form method="POST" action="/search">
+                <input type="text" name="Search" placeholder="Search here..." />
+                <button type="submit">Search</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Heading -->
+    <h1>Your Search Results</h1>
+
+    <!-- Results Container -->
+    <div class="result-container">
+        <% if (places.length > 0) { %>
+            <% places.forEach(place => { %>
+                <div class="card">
+                    <h5 class="card-title"><%= place %></h5>
+                    <a href="/<%= place.toLowerCase() %>" class="btn">Explore <%= place %></a>
+                </div>
+            <% }); %>
+        <% } else { %>
+            <div class="no-results">No matching places found. Try another search!</div>
+        <% } %>
+    </div>
+</body>
+</html>

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        /* Global Styles */
+        body {
+            background-image: url("background3.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #fff;
+            background: linear-gradient(135deg, #d86182 0%, #1d2b64 100%);
+        }
+
+        h1 {
+            color: #fff;
+            text-align: center;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
+            margin-top: 60px;
+            font-size: 3.5rem;
+            letter-spacing: 2px;
+        }
+
+                /* Navbar */
+                .navbar {
+                    background-color: rgba(0, 0, 0, 0.8);
+                }
+        
+                .navbar-brand {
+                    font-size: 24px;
+                    font-weight: bold;
+                    color: #f8f9fa !important;
+                }
+        
+                .navbar .form-control {
+                    border-radius: 50px;
+                }
+        
+                .navbar .btn {
+                    border-radius: 50px;
+                    
+                }
+
+        /* Section Containers */
+        .section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 50px 0;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .container {
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 20px;
+            padding: 25px;
+            width: 280px;
+            box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.8);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .container img {
+            width: 100%;
+            height: 230px;
+            object-fit: cover;
+            border-radius: 15px;
+            margin-bottom: 15px;
+        }
+
+        .container:hover {
+            transform: scale(1.05);
+            box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.8);
+        }
+
+        .container label {
+            font-size: 1.6rem;
+            font-weight: bold;
+            color: #f5f5f5;
+            margin-top: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .container p {
+            font-size: 1.1rem;
+            color: #d1d1d1;
+            margin-top: 10px;
+            line-height: 1.6;
+        }
+
+        button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 12px;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            margin-top: 25px;
+            width: 100%;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .section {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .container {
+                width: 90%;
+                margin-bottom: 20px;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Hiking</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <a class="navbar-brand" href="#">Hiking</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto"></ul>
+        <form method="POST" action="/search" class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" name="Search" type="search" placeholder="Search"
+                aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+       
+        <form method="GET" action="/home" style="margin-left: 10px;">
+            <button class="btn btn-danger" type="submit">Return Home</button>
+        </form>
+    </div>
+</nav>
+
+    <h1>Discover the World's Most Iconic Trails</h1>
+
+    <div class="section">
+        <div class="container">
+            <img src="/inca.png" alt="Inca Trail">
+            <label>Inca Trail to Machu Picchu</label>
+            <p>Experience the legendary Inca Trail, leading to the breathtaking Machu Picchu.</p>
+            <button onclick="location.href = '/inca';">Discover Inca Trail</button>
+        </div>
+        <div class="container">
+            <img src="/annapurna.png" alt="Annapurna Circuit">
+            <label>Annapurna Circuit</label>
+            <p>Embark on a challenging journey through the majestic Annapurna mountain range.</p>
+            <button onclick="location.href = '/annapurna';">Explore Annapurna</button>
+        </div>
+    </div>
+
+</body>
+</html>

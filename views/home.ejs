@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Destinations</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        /* General body styling */
+        body {
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #ef1717, #032328);
+        }
+
+        /* Navbar customization */
+        .navbar {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .navbar-brand {
+            font-size: 24px;
+            font-weight: bold;
+            color: #f8f9fa !important;
+        }
+
+        .navbar .form-control {
+            border-radius: 50px;
+        }
+
+        .navbar .btn {
+            border-radius: 50px;
+            
+        }
+
+        /* Welcome heading */
+        h1 {
+            text-align: center;
+            font-size: 48px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            margin-top: 20px;
+            color: #e5d9d9;
+        }
+
+        /* Content container styling */
+        .content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px;
+        }
+
+        /* Section styling */
+        .section {
+            width: 80%;
+            padding: 30px;
+            text-align: center;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            color: white;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .section:hover {
+            transform: translateY(-10px);
+            box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        .section h3 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .section p {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #f1f1f1;
+        }
+
+        .section .btn {
+            padding: 12px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 50px;
+            border: 2px solid #fff;
+            color: #007bff;
+            background-color: transparent;
+            transition: all 0.3s ease;
+        }
+
+        .section .btn:hover {
+            background-color: #007bff;
+            color: #fff;
+            transform: translateY(-3px);
+        }
+
+        /* Unique themes for each section with gradient background */
+        .hiking {
+            background-image: url('https://example.com/hiking-image.jpg'); /* Add the hiking image URL here */
+            background: linear-gradient(to right, rgba(88, 15, 197, 0.5), rgba(211, 114, 17, 0.7));
+        }
+
+        .cities {
+            background-image: url('https://example.com/cities-image.jpg'); /* Add the cities image URL here */
+            background: linear-gradient(to right, rgba(63, 81, 181, 0.5), rgba(26, 35, 126, 0.7));
+        }
+
+        .islands {
+            background-image: url('https://example.com/islands-image.jpg'); /* Add the islands image URL here */
+            background: linear-gradient(to right, rgba(10, 14, 246, 0.5), rgba(199, 8, 206, 0.7));
+        }
+
+        /* Want-to-Go List button */
+        .wanttogo {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .wanttogo button {
+            width: 300px;
+        }
+
+        /* Responsive styling */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 36px;
+            }
+
+            .section h3 {
+                font-size: 28px;
+            }
+
+            .btn {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark">
+    <a class="navbar-brand" href="#">Destinations</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto"></ul>
+        <form method="POST" action="/search" class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" name="Search" type="search" placeholder="Search"
+                aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+        <!-- Logout Button -->
+        <form method="GET" action="/login" style="margin-left: 10px;">
+            <button class="btn btn-danger" type="submit">Logout</button>
+        </form>
+    </div>
+</nav>
+    <!-- Welcome section -->
+    <div class="container">
+        <h1>Welcome to Destinations</h1>
+    </div>
+
+    <!-- Content sections -->
+    <div class="content">
+        <div class="section hiking">
+            <h3>Hiking</h3>
+            <p>Experience the beauty of nature by going on adventurous hiking trips. Explore the most scenic trails!</p>
+            <button onclick="location.href = '/hiking';" class="btn">View</button>
+        </div>
+
+        <div class="section cities">
+            <h3>Cities</h3>
+            <p>Discover the vibrant life in the world's most exciting cities. From culture to nightlife, explore it all!</p>
+            <button onclick="location.href = '/cities';" class="btn">View</button>
+        </div>
+
+        <div class="section islands">
+            <h3>Islands</h3>
+            <p>Relax and unwind on tropical islands. Pristine beaches, clear waters, and peaceful escapes await!</p>
+            <button onclick="location.href = '/islands';" class="btn">View</button>
+        </div>
+
+        <div class="section islands">
+            <h3>Want To Go</h3>
+            <p>Watch your want to go list </p>
+            <button onclick="location.href = '/wanttogo';" class="btn">View</button>
+        </div>
+    </div>
+
+    <!-- Want-to-Go List -->
+   
+</body>
+
+</html>

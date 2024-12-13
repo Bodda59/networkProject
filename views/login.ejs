@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #ef1717, #032328); /* Vibrant gradient background */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
+        }
+    
+        .container {
+            width: 600px;
+            height: 450px;
+            perspective: 1500px;
+        }
+    
+        .form-wrapper {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            transform-style: preserve-3d;
+            transition: transform 0.6s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    
+        .login,
+        .register {
+            width: 90%;
+            height: 90%;
+            position: absolute;
+            backface-visibility: hidden;
+            padding: 30px;
+            color: #fff;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            background: #292b2f; /* Darker background for form */
+            transition: transform 0.6s ease, opacity 0.6s ease;
+        }
+    
+        .login {
+            transform: rotateY(0deg);
+        }
+    
+        .register {
+            transform: rotateY(180deg);
+        }
+    
+        .login input[type="text"],
+        .login input[type="password"],
+        .register input[type="text"],
+        .register input[type="password"] {
+            display: block;
+            width: 95%;
+            padding: 15px;
+            margin: 15px 0;
+            font-size: 1em;
+            border-radius: 25px;
+            background: #3b3b3b;
+            color: #fff;
+            border: 1px solid #444;
+            transition: background 0.3s ease, box-shadow 0.3s ease;
+        }
+    
+        .login input[type="text"]:focus,
+        .login input[type="password"]:focus,
+        .register input[type="text"]:focus,
+        .register input[type="password"]:focus {
+            background: #4b4b4b;
+            box-shadow: 0 0 10px rgba(81, 203, 238, 1);
+            outline: none;
+        }
+    
+        .login input[type="submit"],
+        .register input[type="submit"] {
+            width: 50%;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 25px;
+            background: linear-gradient(135deg, #ec2405, #ef480b);
+            color: #fff;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            transition: background 0.4s ease, transform 0.3s ease, box-shadow 0.3s ease;
+        }
+    
+        .login input[type="submit"]:hover,
+        .register input[type="submit"]:hover {
+            background: linear-gradient(135deg, #36d7b7, #42e695);
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0, 255, 255, 0.4);
+        }
+    
+        .login a,
+        .register a {
+            color: #f8500e;
+            text-decoration: none;
+            font-size: 1em;
+            display: inline-block;
+            margin-top: 20px;
+            transition: color 0.3s ease;
+        }
+    
+        .login a:hover,
+        .register a:hover {
+            color: #16f589;
+        }
+    
+        .error-message,
+        .success-message {
+            font-size: 0.9em;
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 5px;
+            display: inline-block;
+            width: 100%;
+            text-align: center;
+            opacity: 1; /* Keep the message visible */
+            visibility: visible; /* Ensure the message stays visible */
+        }
+    
+        .error-message {
+            background-color: rgba(254, 254, 252, 0.2);
+            color: red;
+        }
+    
+        .success-message {
+            background-color: rgba(237, 229, 224, 0.2);
+            color: rgb(10, 248, 110);
+        }
+
+        .register a {
+            margin-top: 30px;
+        }
+
+        /* Stylish Backdrop */
+        .backdrop {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: -1;
+            transition: opacity 0.4s ease;
+        }
+    
+        .backdrop.show {
+            opacity: 1;
+        }
+       
+  
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form-wrapper">
+            <div class="login">
+                <h1>Login</h1>
+               <!-- Inside the Login form -->
+            <form id="login-form">
+                   <input type="text" id="username" name="username" placeholder="Enter your username or email" required>
+                   <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                   <input type="submit" value="Login">
+            </form>
+            <div id="login-message"></div>
+                <a href="#" id="create-account-link">Create an account</a>
+            </div>
+
+            <div class="register">
+                <h1>Register</h1>
+                <form id="register-form">
+                    <input type="text" id="new-username" name="new-username" placeholder="Enter a username" required>
+                    <input type="password" id="new-password" name="new-password" placeholder="Enter a password" required>
+                    <input type="submit" value="Register">
+                </form>
+                <div id="register-message"></div>
+                <a href="#" id="back-to-login-link">Back to Login</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Show registration form when "Create an account" is clicked
+        document.getElementById('create-account-link').addEventListener('click', function(event) {
+            event.preventDefault();
+            document.querySelector('.form-wrapper').style.transform = 'rotateY(-180deg)';
+        });
+
+        // Show login form when "Back to Login" is clicked
+        document.getElementById('back-to-login-link').addEventListener('click', function(event) {
+            event.preventDefault();
+            document.querySelector('.form-wrapper').style.transform = 'rotateY(0deg)';
+        });
+
+        // Handle registration form submission without page reload (AJAX)
+        document.getElementById('register-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const username = document.getElementById('new-username').value;
+            const password = document.getElementById('new-password').value;
+
+            // Clear previous messages before displaying new one
+            const messageElement = document.getElementById('register-message');
+            messageElement.classList.remove('success-message', 'error-message');
+            messageElement.textContent = '';
+
+            // AJAX request to the backend for registration
+            fetch('/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ username, password })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    messageElement.className = 'success-message';
+                    messageElement.textContent = 'Registration successful! Please login.';
+                } else {
+                    messageElement.className = 'error-message';
+                    messageElement.textContent = 'Error: ' + data.message;
+                }
+            })
+            .catch(error => {
+                messageElement.className = 'error-message';
+                messageElement.textContent = 'An unexpected error occurred. Please try again.';
+            });
+        });
+
+        // Handle login form submission without page reload (AJAX)
+document.getElementById('login-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+
+    // Clear previous messages before displaying new one
+    const messageElement = document.getElementById('login-message');
+    messageElement.classList.remove('success-message', 'error-message');
+    messageElement.textContent = '';
+
+    // AJAX request to the backend for login
+    fetch('/login', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username, password })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            messageElement.className = 'success-message';
+            messageElement.textContent = 'Login successful! Redirecting...';
+            // Optionally, you can redirect manually after a success
+            setTimeout(() => window.location.href = '/home', 1000); // Redirect after 2 seconds
+        } else {
+            messageElement.className = 'error-message';
+            messageElement.textContent = 'Error: ' + data.message;
+        }
+    })
+    .catch(error => {
+        messageElement.className = 'error-message';
+        messageElement.textContent = 'An unexpected error occurred. Please try again.';
+    });
+});
+    </script>
+</body>
+</html>
