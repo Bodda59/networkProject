@@ -16,7 +16,7 @@
             color: #ffffff;
         }
 
-        /* Navbar */
+    
  /* Navbar */
 .navbar {
     display: flex;
@@ -46,7 +46,7 @@
 }
 
 .search-bar button {
-    background: #50C878;
+    background: #fa0254;
     color: white;
     border: none;
     padding: 10px 20px;
@@ -58,6 +58,7 @@
 
 .search-bar button:hover {
     transform: scale(1.1);
+    background: #1c1114;
 }
 
         /* Search Bar */
@@ -171,13 +172,7 @@
                 opacity: 1;
             }
         }
-
-        .video video {
-            width: 100%;
-            border-radius: 15px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.7);
-            transition: transform 0.3s ease;
-        }
+]
 
         .container1:hover,
         .container2:hover,
@@ -275,7 +270,7 @@
         }
 
         .return-home button {
-            background-color: #ffac41;
+            background-color: #e90966;
             color: #fff;
             border: none;
             padding: 14px 28px;
@@ -287,9 +282,19 @@
         }
 
         .return-home button:hover {
-            background-color: #ff8c00;
+            background-color: #0f0c0a;
             transform: scale(1.1);
             box-shadow: 0px 12px 20px rgba(0, 0, 0, 0.5);
+        }
+        .custom-link {
+            color: #ffac41; /* Change to any color you like */
+            text-decoration: none; /* Removes underline */
+            font-weight: bold; /* Optional, adds bold text */
+        }
+        
+        .custom-link:hover {
+            color: #f39c12; /* Color on hover */
+            text-decoration: underline; /* Optional, adds underline on hover */
         }
         
 
@@ -306,7 +311,7 @@
 
    <!-- Return to Home Button -->
    <div class="return-home">
-    <button onclick="window.location.href='/home'" class="navbar-toggler">Return to Home</button>
+    <button onclick="window.location.href='/home'"">Return to Home</button>
 </div>
 
 <div class="navbar">
@@ -325,21 +330,37 @@
     <!-- Content Section -->
     <div class="content-container">
         <div class="container1">
-            <img src="/santorini.png" alt="Paris Image">
+            <img src="/santorini.png" alt="santorini image">
         </div>
         <div class="container2">
             <p>
                 With its stunning turquoise waters and picturesque villages, great activities including wine-tasting, authentic Greek cuisine, regular boat excursions due to its ideal location for island hopping, small Greek island of Santorini became so popular as a holiday destination.
             </p>
         </div>
-        <div class="video">
-            <video controls>
-                <source src="santorini.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-        </div>
-    </div>
 
+        <div class="video">
+            <iframe width="500" height="500" src="https://www.youtube.com/embed/mbc-zF1R7N4" 
+            title="Exploring Paris, France | Iconic Landmarks & Parisian Charm #paris #france #travel #discover #europe" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+            </iframe>
+        
+            <!-- Fallback content -->
+            <noscript>
+                <p>Sorry, we cannot load the video at the moment. Please ensure JavaScript is enabled or check back later.</p>
+                <p>If you wish, you can also view the video on <a href="https://www.youtube.com/embed/mbc-zF1R7N4" target="_blank">YouTube</a>.</p>
+            </noscript>
+        
+            <!-- Alternative content in case the iframe does not load -->
+            <div class="fallback-content">
+                <p>Sorry, if the video could not be loaded. You can watch it on YouTube: 
+                    <a href="https://www.youtube.com/embed/mbc-zF1R7N4" target="_blank" class="custom-link">Watch on YouTube</a>.
+                </p>
+            </div>
+        </div>
+        
+    </div>
     <!-- Want-to-Go List Button -->
     <div class="wanttogo">
         <form method="POST" action="/add-to-wanttogo">
