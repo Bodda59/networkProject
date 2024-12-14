@@ -229,7 +229,8 @@
             .then(data => {
                 if (data.success) {
                     messageElement.className = 'success-message';
-                    messageElement.textContent = 'Registration successful! Please login.';
+                    messageElement.textContent = 'Registration successful!.';
+                    setTimeout(() => window.location.href = '/home', 1700); 
                 } else {
                     messageElement.className = 'error-message';
                     messageElement.textContent = 'Error: ' + data.message;
@@ -266,8 +267,7 @@ document.getElementById('login-form').addEventListener('submit', function(event)
         if (data.success) {
             messageElement.className = 'success-message';
             messageElement.textContent = 'Login successful! Redirecting...';
-            // Optionally, you can redirect manually after a success
-            setTimeout(() => window.location.href = '/home', 1000); // Redirect after 2 seconds
+            setTimeout(() => window.location.href = '/home', 1000); 
         } else {
             messageElement.className = 'error-message';
             messageElement.textContent = 'Error: ' + data.message;

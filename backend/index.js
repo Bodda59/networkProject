@@ -50,15 +50,11 @@ app.post('/login', (req, res) => {
             if (user) {
                 if (user.password === password) {
                     req.session.username = username;
-                    req.session.message = ''; 
                     res.json({ success: true, message: 'Login successful!' });
                 } else {
-                    // Incorrect password: Set error message in session
-                    req.session.message = "The password is incorrect";
                     res.json({ success: false, message: 'Incorrect password' }); 
                 }
             } else {
-                req.session.message = "No record exists with that username";
                 res.json({ success: false, message: 'No user found with that username' }); 
             }
         })
@@ -82,7 +78,7 @@ app.post('/register', (req, res) => {
             } else {
                 db.collection("myCollection").insertOne({ username: username, password: password, wantToGo: [] })
                     .then(() => {
-                        
+                        req.session.username = username;
                         res.json({ success: true, message: "Registration successful! Please login." });
                     })
                     .catch(err => {
