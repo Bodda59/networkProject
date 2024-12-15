@@ -124,16 +124,45 @@
             }
         }
 
+    
         /* Content Container */
-        .content-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-wrap: wrap;
-            margin: 40px 0;
-            animation: fadeIn 2s ease-out;
-        }
+.content-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 40px 0;
+    animation: fadeIn 2s ease-out;
+    width: 100%;
+}
 
+/* Video Container */
+.video {
+    width: 100%;
+    max-width: 1000px; /* Maximum size */
+    height: auto;
+    aspect-ratio: 16 / 9; /* Ensures aspect ratio is preserved */
+    border-radius: 15px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.7);
+    transition: transform 0.3s ease;
+}
+
+/* Video */
+.video iframe {
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.7);
+    transition: transform 0.3s ease;
+    max-width: 100%; /* Ensures the iframe scales correctly */
+    max-height: 100%; /* Ensures the iframe scales correctly */
+}
+
+/* Hover effect for video container */
+.video:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 12px 20px rgba(0, 0, 0, 0.7);
+}
         .container1,
         .container2,
         .video {
@@ -174,12 +203,7 @@
             }
         }
 
-        .video video {
-            width: 100%;
-            border-radius: 15px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.7);
-            transition: transform 0.3s ease;
-        }
+  
 
         .container1:hover,
         .container2:hover,
@@ -222,52 +246,8 @@
             margin-bottom: 20px;
         }
 
-        /* Full-Screen Video */
-        .fullscreen-video-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            z-index: -1;
-            overflow: hidden;
-        }
+       
 
-        .fullscreen-video-container video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0.5;
-        }
-
-        /* Mobile Responsiveness */
-        @media (max-width: 768px) {
-            .content-container {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .container1,
-            .container2,
-            .video {
-                width: 90%;
-            }
-
-            h1 {
-                font-size: 2.2rem;
-            }
-
-            .navbar-brand {
-                font-size: 2rem;
-            }
-
-            .form-inline {
-                display: flex;
-                justify-content: center;
-                margin-top: 20px;
-                width: 100%;
-            }
-        }
         /* Return to Home Button */
         .return-home {
             position: fixed;
@@ -380,7 +360,7 @@
 
 
         <div class="video">
-            <iframe width="500" height="500" src="https://www.youtube.com/embed/O98HEnCw0ek" 
+            <iframe width="1000" height="1000" src="https://www.youtube.com/embed/O98HEnCw0ek" 
             title="Exploring Paris, France | Iconic Landmarks & Parisian Charm #paris #france #travel #discover #europe" 
             frameborder="0" 
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 

@@ -124,15 +124,44 @@
             }
         }
 
-        /* Content Container */
-        .content-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-wrap: wrap;
-            margin: 40px 0;
-            animation: fadeIn 2s ease-out;
-        }
+     
+.content-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 40px 0;
+    animation: fadeIn 2s ease-out;
+    width: 100%;
+}
+
+/* Video Container */
+.video {
+    width: 100%;
+    max-width: 1200px; 
+    height: auto;
+    aspect-ratio: 16 / 9;
+    border-radius: 15px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.7);
+    transition: transform 0.3s ease;
+}
+
+/* Video */
+.video iframe {
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.7);
+    transition: transform 0.3s ease;
+    max-width: 100%; 
+    max-height: 100%; 
+}
+
+/* Hover effect for video container */
+.video:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 12px 20px rgba(0, 0, 0, 0.7);
+}
 
         .container1,
         .container2,
@@ -341,8 +370,9 @@
             <p>Peru's Inca Trail is perhaps the world's greatest hike because it combines the best of both types of travel: a four-to-five day walk to the spectacular lost city of Machu Picchu that winds through the zone where the snowcapped Andes Mountains crash into the lush Amazon jungle
             .</p>
         </div>
+        
         <div class="video">
-            <iframe width="500" height="500" src="https://www.youtube.com/embed/cnMa-Sm9H4k" 
+            <iframe width="1000" height="1000" src="https://www.youtube.com/embed/cnMa-Sm9H4k" 
             title="Exploring Paris, France | Iconic Landmarks & Parisian Charm #paris #france #travel #discover #europe" 
             frameborder="0" 
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
@@ -362,6 +392,7 @@
                 </p>
             </div>
         </div>
+       
         
        
     </div>
