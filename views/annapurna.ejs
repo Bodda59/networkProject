@@ -327,7 +327,34 @@
             color: #f39c12; /* Color on hover */
             text-decoration: underline; /* Optional, adds underline on hover */
         }
-      
+
+        .error-message {
+            font-size: 20px;
+            background-color: #150f0f;
+            color: red;
+            width: 25%;
+            font-weight: bold;
+            margin-left: 20px; 
+            padding-left : 20px;
+        }
+    
+        .success-message {
+            font-size: 20px;
+            background-color: #150f0f;
+            color: rgb(10, 248, 110);
+            width: 30%;
+            font-weight: bold;
+            margin-left: 20px; /* Adjust the value as needed */
+            padding-left : 20px;
+        }
+        .success-message:hover {
+            transform: scale(1.05);
+            box-shadow: 0px 12px 20px rgba(0, 0, 0, 0.7);
+        }
+        .error-message:hover {
+            transform: scale(1.05);
+            box-shadow: 0px 12px 20px rgba(0, 0, 0, 0.7);
+        }
 
 
     </style>
@@ -396,15 +423,50 @@
 
     <!-- Want-to-Go List Button -->
     <div class="wanttogo">
-        <form method="POST" action="/add-to-wanttogo">
-            <input type="hidden" name="destination" value="annapurna">
+        <form id="add-to-wanttogo-form">
+            <input type="hidden" id="destination" name="destination" value="annapurna">
             <button type="submit" class="btn">Add to Want-to-Go</button>
         </form>
-        <div class="message-container">
-            <% if (message && message.trim() !== '') { %>
-                <p><%= message %></p>
-            <% } %>
-        </div>
+        <div><p></p></div>
+        <div id="message-container" class="message-container"></div>
     </div>
+
+
+
+    <script>
+        // Handle registration form submission without page reload (AJAX)
+        document.getElementById('add-to-wanttogo-form').addEventListener('submit', function(event) {
+           event.preventDefault();
+
+           const destination = document.getElementById('destination').value;
+           // Clear previous messages before displaying new one
+           const messageElement = document.getElementById('message-container');
+           messageElement.classList.remove('success-message', 'error-message');
+           messageElement.textContent = '';
+
+           // AJAX request to the backend for registration
+           fetch('/add-to-wanttogo', {
+               method: 'POST',
+               headers: {
+                   'Content-Type': 'application/json',
+               },
+               body: JSON.stringify({ destination })
+           })
+           .then(response => response.json())
+           .then(data => {
+               if (data.success) {
+                   messageElement.className = 'success-message';
+                   messageElement.textContent = data.message;
+               } else {
+                   messageElement.className = 'error-message';
+                   messageElement.textContent = data.message;
+               }
+           })
+           .catch(error => {
+               messageElement.className = 'error-message';
+               messageElement.textContent = 'An unexpected error occurred. Please try again.';
+           });
+       });
+   </script>
 </body>
 </html>

@@ -267,41 +267,33 @@
             background-color: #0f0c0a;
             transform: scale(1.1);
             box-shadow: 0px 12px 20px rgba(0, 0, 0, 0.5);
+        }    
+        .error-message {
+            font-size: 20px;
+            background-color: #150f0f;
+            color: red;
+            width: 25%;
+            font-weight: bold;
+            margin-left: 20px; 
+            padding-left : 20px;
         }
-        .message-container {
-            padding: 10px;
-            margin-top: 20px;
-            border-radius: 5px;
-            font-size: 16px;
-            text-align: center;
-            width: 100%;
-            max-width: 400px;
-            margin-left: auto;
-            margin-right: auto;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    
+        .success-message {
+            font-size: 20px;
+            background-color: #150f0f;
+            color: rgb(10, 248, 110);
+            width: 30%;
+            font-weight: bold;
+            margin-left: 20px; /* Adjust the value as needed */
+            padding-left : 20px;
         }
-        
-        .message-container p {
-            margin: 0;
-            padding: 0;
+        .success-message:hover {
+            transform: scale(1.05);
+            box-shadow: 0px 12px 20px rgba(0, 0, 0, 0.7);
         }
-        
-        .message-container.success {
-            background-color: #d4edda;
-            color: #155724;
-            border: 1px solid #c3e6cb;
-        }
-        
-        .message-container.error {
-            background-color: #f8d7da;
-            color: #721c24;
-            border: 1px solid #f5c6cb;
-        }
-        
-        .message-container.warning {
-            background-color: #fff3cd;
-            color: #856404;
-            border: 1px solid #ffeeba;
+        .error-message:hover {
+            transform: scale(1.05);
+            box-shadow: 0px 12px 20px rgba(0, 0, 0, 0.7);
         }
         .custom-link {
             color: #ffac41; /* Change to any color you like */
@@ -377,17 +369,49 @@
     </div>
 
     <div class="wanttogo">
-        <form method="POST" action="/add-to-wanttogo">
-            <input type="hidden" name="destination" value="paris">
+        <form id="add-to-wanttogo-form">
+            <input type="hidden" id="destination" name="destination" value="paris">
             <button type="submit" class="btn">Add to Want-to-Go</button>
         </form>
-        <div class="message-container">
-            <% if (message && message.trim() !== '') { %>
-                <p><%= message %></p>
-            <% } %>
-        </div>
+        <div><p></p></div>
+        <div id="message-container"></div>
     </div>
 
+    <script>
+         // Handle registration form submission without page reload (AJAX)
+         document.getElementById('add-to-wanttogo-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const destination = document.getElementById('destination').value;
+            // Clear previous messages before displaying new one
+            const messageElement = document.getElementById('message-container');
+            messageElement.classList.remove('success-message', 'error-message');
+            messageElement.textContent = '';
+
+            // AJAX request to the backend for registration
+            fetch('/add-to-wanttogo', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ destination })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    messageElement.className = 'success-message';
+                    messageElement.textContent = data.message;
+                } else {
+                    messageElement.className = 'error-message';
+                    messageElement.textContent = data.message;
+                }
+            })
+            .catch(error => {
+                messageElement.className = 'error-message';
+                messageElement.textContent = 'An unexpected error occurred. Please try again.';
+            });
+        });
+    </script>
 </body>
 
 </html>

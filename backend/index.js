@@ -26,6 +26,7 @@ app.use(express.static(path.join(__dirname, "../public")));
 // Connect to MongoDB with error handling
 const mongoUrl = "mongodb://localhost:27017";
 const client = new MongoClient(mongoUrl, { useUnifiedTopology: true });
+// to use it in all endpoints 
 let db;
 
 client.connect()
@@ -184,33 +185,33 @@ app.post("/add-to-wanttogo", isAuthenticated, async (req, res) => {
     const username = req.session.username;
 
     try {
-        
         const user = await db.collection("myCollection").findOne({
             username: username,
             wantToGo: destination,
         });
 
         if (user) {
-            res.render(destination, {
-                username: username,
-                message: "This destination is already in your list!",
-            });
-        } else {
-            
-            await db.collection("myCollection").updateOne(
-                { username: username },
-                { $push: { wantToGo: destination } }
-            );
-            res.render(destination, {
-                username: username,
-                message: "Destination has been added to your list!",
+            return res.json({
+                success: false,
+                message: "This destination is already in your Want-to-Go list.",
             });
         }
-    } catch (err) {
-        console.error("Error adding destination:", err);
-        res.render(destination, {
-            username: username,
-            message: "An error occurred while adding the destination.",
+
+        await db.collection("myCollection").updateOne(
+            { username: username },
+            { $addToSet: { wantToGo: destination } },
+            { upsert: true }
+        );
+
+        return res.json({
+            success: true,
+            message: "Destination added to your Want-to-Go list successfully!",
+        });
+    } catch (error) {
+        console.error(error);
+        return res.json({
+            success: false,
+            message: "An error occurred while adding the destination. Please try again.",
         });
     }
 });
